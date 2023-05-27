@@ -146,16 +146,16 @@ body {
         background-position: 0;
     }  
 }
-/*---------- AVATAR ----------*/
+/*/////////////---------- AVATAR ----------////////////////*/
 #bear {
     height: 300px;
-    width: 180px;
     left: 20%;
     bottom: 12%;
     z-index: 600;
 }
 
 .runner {
+    width: 190px;
     background: url("/images/oso-caminando-resized.png") repeat-X;
     background-size: 1200px 100%;
     animation: runner .6s steps(6) infinite;
@@ -163,13 +163,18 @@ body {
 
 
 .jumper {
+    width: 190px;
     background: url("/images/oso-saltando-resized.png") repeat-X;
     background-size: 1200px 100%;
     animation: jumper 1.6s steps(6);
 }
 
 .faller {
-    animation: faller 600ms cubic-bezier(0, 0, .7 , 1) forwards;
+    width: 229px;
+    background: url("/images/oso-caido-resize.png") repeat-X;
+    background-size: 1200px 100%;
+    animation: faller .6s steps(4) ;
+    
 }
 
 @keyframes runner {
@@ -188,11 +193,11 @@ body {
     }
 
     50% {
-        bottom: 50%;
+        bottom: 35%;
     }
 
     80%{
-        bottom: 50%;
+        bottom: 35%;
     }
     100%{
         bottom: 12%;
@@ -202,55 +207,98 @@ body {
 }
 
 @keyframes faller {
-    from{ 
-        bottom: 50%;
-    }
-    to{
+    100%{ 
         bottom: 12%;
+        background-position: 1200px;
+    }
+    0%{
+        bottom: 12%;
+        background-position: 0px;
     }  
 }
 
 
-/*---------- ASSETS  ----------*/
+/*//////////////////---------- ASSETS  ----------//////////////*/
 
-.enemy {
+/*//////////////////---------- ENEMIES  ----------//////////////*/
+
+.stone {
     position: absolute;
-    bottom: 14%;
-    width: 80px;
-    height: 60px;
-    background: url("/images/assets/stone.png");
-    background-size: cover;
+    background: url("/images/assets/stone.png") repeat-x;
+    bottom: 16%;
+    width: 140px;
+    height:  90px;
+    animation: enemy 6s linear;
     z-index: 600;
-    animation: enemy 10s linear;
 }
 
+.cactus{
+    position: absolute;
+    background: url("/images/assets/cactus.png") repeat-x;
+    bottom: 15%;
+    width: 70px ;
+    height: 45px ;
+    animation: enemy 8s linear;
+    z-index: 600;
+}
+.tronco{
+    position: absolute;
+    background: url("/images/assets/tronco.png") repeat-x;
+    bottom: 15%;
+    width: 110px;
+    height: 85px;
+    animation: enemy 9s linear;
+    z-index: 600;
+}
 
 @keyframes enemy {
     from {
         left: 100%;
     }
     to {
-        left: -10%;
+        left: -20%;
     }
 }
 
 
-.reward {
+/*//////////////////---------- REWARDS  ----------//////////////*/
+
+
+.coin{
     position: absolute;
-    bottom: 40%;
-    width: 100px;
-    height: 163px;
-    background: url("/images/assets/coin.png") repeat-x ;
-    animation: reward 13s linear infinite;
+    width: 60px;
+    height: 90px;
+    background: url("/images/assets/coin-resized.png") repeat-x;
+    bottom: 45%;
+    animation: reward 8s linear infinite;
     z-index: 600;
 }
 
+.star{
+    position: absolute;
+    width: 60px;
+    height: 90px;
+    background: url("/images/assets/star.png") repeat-x;
+    bottom: 50%;
+    animation: reward 8s linear;
+    z-index: 600;
+}
+
+.live {
+    position: absolute;
+    width: 60px;
+    height: 90px;
+    background: url("/images/assets/live.png") repeat-x;
+    bottom: 55%;
+    animation: reward 4s linear;
+    z-index: 600;
+}
 
 @keyframes reward {
     from {
         left: 100%;
     }
     to {
-        left: -10%;
+        left: -20%;
     }
 }

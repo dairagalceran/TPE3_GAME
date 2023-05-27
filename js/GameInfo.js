@@ -1,5 +1,6 @@
 class GameInfo {
 
+
     setPoints(points){
         document.getElementById('points').textContent = ""+points;
     }
@@ -10,9 +11,10 @@ class GameInfo {
 
     setTimeElapsed(time){
         let seconds = Math.floor(time / 1000)
-
-        document.getElementById('time').textContent = Math.floor(seconds / 60) + ":"+ seconds % 60 ;
+        let timeLeft = 50 - seconds;
+        document.getElementById('time').textContent =`Tiempo restante: `+ timeLeft+ `segundos`;
 
     }
 
+    
 }
