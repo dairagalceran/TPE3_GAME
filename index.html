@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Puddles&display=swap" rel="stylesheet">  
+    <link rel="stylesheet" href="css/inicioStyle.css">
     <link rel="stylesheet" href="css/style.css">
+
     <title>Document</title>
 </head>
 <body>
     
-    <div id="game">
+    <div id="game" class="">
             
             <div id="back-1" class="layer"></div> 
             <div id="back-2" class="layer"></div>
@@ -19,18 +24,39 @@
             <div id="back-6" class="layer"></div>
             <div id="back-7" class="layer"></div>
             <div id="draw-layer" class="layer"></div>
+
             <div id="bear" class="layer runner"></div>
             <div id="rewardItems" class="coin"></div>
             
-            <div id="gameInfo">
-                <div id="points"></div>
-                <div id="lives"></div>
+            <div id="gameInfo" class="">
+                <div id="pointGame"><p>Puntaje: <span id="points"></span></p></div>
+                <div id="lives"> </div>
                 <div id="time"></div>
-                <div id="timer"></div>
             </div>
     </div>
+            <div id="startGame" class="starInfo">
+                <h1 class="welcome-font">BEAR  --  RUNNER</h1>
+                
+                <h4>PRESIONA <img id="space-bar" src="images/space-bar.jpg">PARA SALTAR LOS OBSTÁCULOS Y NO PERDER VIDAS</h4>
+                <h4>SALTA PARA JUNTAR MONEDAS Y GANAR PUNTOS</h4>
+                
+                <div class="welcome">
+                    <buttom class="btn btnPlay" id="play" role="button" href="">Play Game</buttom>
+                </div>
+            </div>
+            
+            <div id="gameOver" class="">
+                <img id="imgOver" src="images/game-over.png" alt="">
+                
+                <div id="scoreOver" class="score">
+                    <p>Tu puntaje fue de <span id="scoreEndGame"></span> puntos</p>
+                    <buttom id="reiniciar" class="btn btnReiniciar" role="button" href="">Volver a Jugar</buttom>
+                </div>
+            </div>
+    
 
 </body>
+
 <script src="js/GameInfo.js"></script>
 <script src="js/Character.js"></script>
 <script src="js/Avatar.js"></script>

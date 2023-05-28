@@ -21,7 +21,8 @@ class Game {
     start(){
         this.mainCharacter.run();
         this.lastLoop =  Date.now();
-        this.addCharacter(new Enemy());
+        this.addCharacter(new Enemy()); 
+          
        // this.addCharacter(new Reward());
         
     }
