@@ -1,31 +1,13 @@
-class Character{
+class Character extends ScreenItem {
     
     constructor(domNode){
-        this.setDomNode(domNode);
+        super(domNode);
         this.isAlive = true;
         this.hasCollided = false;
     };
 
     getName(){
         throw Error("Define Name")
-    }
-
-    setDomNode(domNode){
-        this.domNode = domNode;
-    }
-
-    getPosition(){ 
-        let rect = this.domNode.getBoundingClientRect();
-        return {x: rect.x, y: rect.y}; 
-    }
-
-    getSize() {
-        let rect = this.domNode.getBoundingClientRect();
-        return {width: rect.width, height: rect.height}; 
-    }
-
-    getNode(){
-        return this.domNode;
     }
 
     getIsAlive(){

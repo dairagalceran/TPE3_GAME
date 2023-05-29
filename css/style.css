@@ -10,7 +10,12 @@ body {
     overflow:hidden;
 }
 
-#game {
+.hidden {
+    z-index: -100;
+    display: none;
+}
+
+#game  {
     width: 100%;
     height: 100%;
     overflow:hidden;
@@ -148,7 +153,8 @@ body {
 }
 /*/////////////---------- AVATAR ----------////////////////*/
 #bear {
-    height: 300px;
+    position: absolute;
+    height: 280px;
     left: 20%;
     bottom: 12%;
     z-index: 600;
@@ -170,8 +176,8 @@ body {
 }
 
 .faller {
-    width: 229px;
-    background: url("/images/oso-caido-resize.png") repeat-X;
+    width: 201px;
+    background: url("/images/oso-caido-resized.png") repeat-X;
     background-size: 1200px 100%;
     animation: faller .6s steps(4) ;
     
@@ -217,37 +223,58 @@ body {
     }  
 }
 
+.dying {
+    background: url("/images/oso-caido-resize.png") repeat-X;
+    width: 229px;
+    background-size: 1200px 100%;
+    animation: dead 1.6s steps(4) ;
+    animation-fill-mode: forwards;
+    animation-iteration-count: calc(1/3);
+    bottom: 12%;
+    left: 125px;
+}
 
+@keyframes dead {
+    0% {
+        background-position: 0
+    }
+    100% {
+        background-position: 1200px
+    }
+}
 /*//////////////////---------- ASSETS  ----------//////////////*/
 
 /*//////////////////---------- ENEMIES  ----------//////////////*/
-
-.stone {
+.enemy{
     position: absolute;
-    background: url("/images/assets/stone.png") repeat-x;
-    bottom: 16%;
-    width: 140px;
-    height:  90px;
     animation: enemy 6s linear;
     z-index: 600;
 }
 
-.cactus{
-    position: absolute;
+.stone {    
+    background: url("/images/assets/stone-resized.png") repeat-x;
+    bottom: 16%;
+    width: 110px;
+    height: 75px ;
+    /*animation: enemy 6s linear;*/
+    z-index: 600;
+}
+
+.cactus{ 
     background: url("/images/assets/cactus.png") repeat-x;
     bottom: 15%;
     width: 70px ;
     height: 45px ;
-    animation: enemy 8s linear;
+    /*animation: enemy 8s linear;*/
     z-index: 600;
 }
 .tronco{
-    position: absolute;
+    
     background: url("/images/assets/tronco.png") repeat-x;
     bottom: 15%;
     width: 110px;
     height: 85px;
-    animation: enemy 9s linear;
+    /*animation: enemy 9s linear;*/
     z-index: 600;
 }
 
@@ -262,15 +289,32 @@ body {
 
 
 /*//////////////////---------- REWARDS  ----------//////////////*/
+/* animacion desde js cuando colisiona con la moneda*/
+
+@keyframes collect {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(0,-50px) rotateY(1080deg);
+        
+    }
+}
 
 
-.coin{
-    position: absolute;
+
+.reward {
+    position: absolute; 
     width: 60px;
     height: 90px;
     background: url("/images/assets/coin-resized.png") repeat-x;
-    bottom: 45%;
-    animation: reward 8s linear infinite;
+    bottom: 55%;
+    animation: reward 8s linear ;
+    filter: opacity(80%);
     z-index: 600;
 }
 

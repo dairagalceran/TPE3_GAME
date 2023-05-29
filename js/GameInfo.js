@@ -1,8 +1,11 @@
 class GameInfo {
 
+    constructor(){
+
+    }
 
     setPoints(points){
-        document.getElementById('points').textContent = ""+points;
+        document.getElementById('score').textContent = ""+points;
     }
 
     setLives(lives){
@@ -13,7 +16,6 @@ class GameInfo {
         let seconds = Math.floor(time / 1000)
         let timeLeft = 50 - seconds;
         document.getElementById('time').textContent =`Tiempo restante: `+ timeLeft+ `segundos`;
-
     }
 
     
