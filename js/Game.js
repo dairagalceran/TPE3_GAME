@@ -5,7 +5,7 @@ const GameStatus = {
 }
 
 const GAME_TIME_LIMIT = 50
-const INITIAL_LIVES = 1
+const INITIAL_LIVES = 2
 
 class Game {
     status = GameStatus.INIT
@@ -202,11 +202,12 @@ class Game {
         this.characters.forEach(c => {
             if(this.mainCharacter.collidesWith(c)){
                 if(c.getName() == "Enemy" && !c.getHasCollided()){
-                    c.setHasCollided(true);
+                    c.setHasCollided(true, c.type);
                     this.onEnemyCollision();
                 }
                 if(c.getName() == "Reward" && !c.getHasCollided()){
                     c.setHasCollided(true);
+                    c.setHasCollidedSound();
                     let typeOfReward = c.type;
                     this.onRewardCollision(typeOfReward);
                 }

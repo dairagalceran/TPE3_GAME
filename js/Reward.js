@@ -52,6 +52,12 @@ class Reward extends Character {
         super.setHasCollided(collided);
         if(collided){
             this.getNode().style.animation = "collect 4s ease-out, reward 5s linear forwards";
+            
         }
+    }
+
+    setHasCollidedSound(){
+        this.rewardSound = document.getElementById('rewardSound');
+        this.rewardSound.play();
     }
 }

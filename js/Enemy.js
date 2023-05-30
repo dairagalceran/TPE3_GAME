@@ -33,21 +33,28 @@ class Enemy extends Character {
     getName(){
         return "Enemy"
     }
-/*
-    cargarEfectoSonido(){
-        const efectoCaida =  document.createElement("audio");
-        efectoCaida.src = sounds/kidding-11;
-        efectoCaida.setAttribute("preload", "auto");
-        //efectoCaida.style.display = "none";
-        return efectoCaida;
-    }
-    */
 
     show(){
         super.show();
         this.getNode().addEventListener("animationend", ()=> { 
             this.die();
         });
+    }
+
+    setHasCollided(collided , typeOfenemy){
+        super.setHasCollided(collided);
+        if(collided && typeOfenemy == 'stone'){
+            this.crashSound = document.getElementById('crashSound');
+            this.crashSound.play();
+        }
+        if(collided && typeOfenemy == 'tronco'){
+            this.woodSound = document.getElementById('woodSound');
+            this.woodSound.play();
+        }
+        if(collided && typeOfenemy == 'cactus'){
+            this.painSound = document.getElementById('painSound');
+            this.painSound.play();
+        }
     }
 
 }
