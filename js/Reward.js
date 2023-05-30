@@ -1,3 +1,9 @@
+const RewardsValue ={
+    COIN: 1,
+    STAR: 2,
+    HEART: 4
+}
+
 class Reward extends Character {
 
 
@@ -8,9 +14,7 @@ class Reward extends Character {
         this.show();
     }
 
-    /*__generateRandomRewardType(){
-        return "reward"
-    }
+
     /**función privada */
     __generateRandomRewardType(){
         let max = 4;
@@ -42,5 +46,12 @@ class Reward extends Character {
         this.getNode().addEventListener("animationend" , () => {
             this.die();
         });
+    }
+
+    setHasCollided(collided){
+        super.setHasCollided(collided);
+        if(collided){
+            this.getNode().style.animation = "collect 4s ease-out, reward 5s linear forwards";
+        }
     }
 }

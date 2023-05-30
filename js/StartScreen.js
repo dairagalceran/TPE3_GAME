@@ -6,7 +6,7 @@ class StartScreen extends ScreenItem {
         const node = document.createElement('div');
         node.classList.add('layer');
         node.classList.add('information');
-        node.innerHTML = '<h1>BEAR  --  RUNNER</h1> <ul><li><h3>Instructions</h3></li><li>You must jump  the obstacles and collect coins</li><li>Use  space-bar to jump!!!</li><button  id="button-play" type="button" >Play Game</button>'
+        node.innerHTML = '<h1>BEAR  --  RUNNER</h1> <ul><li><h3>HAVE FUN!!!</h3></li><h3></h3>- - - - - - - - - - - - <li>COLLECT TREASURES AND AVOID FALLING </li>  <li>  WHILE WALKING THROUGH THE FOREST </li> </ul> <button  id="button-start" type="button" >Play Game</button>'
         super(node);
         this.hide();
     }
@@ -14,7 +14,7 @@ class StartScreen extends ScreenItem {
 
 
     setOnStartClickedListener(onClick){
-        const button = this.getNode().querySelector('#button-play');
+        const button = this.getNode().querySelector('#button-start');
        // button.removeEventListener('click',null);
         button.addEventListener('click' , () => {
             onClick();

@@ -4,11 +4,10 @@ const GameStatus = {
     FINISHED : 'FINISHED'
 }
 
-const GAME_TIME_LIMIT = 25
-const INITIAL_LIVES = 2
+const GAME_TIME_LIMIT = 50
+const INITIAL_LIVES = 1
 
 class Game {
-    
     status = GameStatus.INIT
     points = 0;
     lives = INITIAL_LIVES;
@@ -22,28 +21,16 @@ class Game {
 
     constructor(){
         this.gameNode = document.getElementById('game');
-        this.mainCharacter =  new Avatar();
-        this.gameInfo =  new GameInfo();
+        this.mainCharacter =  new Avatar();        
         this.characters = [];
+        this.createGameInfo();
         this.createStartScreen();
-    }
-
-    createStartScreen(){
-        this.startScreen = new StartScreen();
-        this.gameNode.appendChild(this.startScreen.getNode());
-    }
-
-    createEndScreen(){
-        this.endScreen = new EndScreen();
-        this.gameNode.appendChild(this.endScreen.getNode());
-    }
-
-    iniciarMusicajuego(){
-        const musicaFondoJuego =  new Audio("/sounds/kidding-11.mp3");
-        musicaFondoJuego.play();
+        this.createInformationScreen();
+        this.createEndScreen();
     }
 
     initGame(){
+        this.endScreen.hide();
         this.startScreen.show();
         this.status = GameStatus.INIT;
         this.points = 0;
@@ -55,18 +42,36 @@ class Game {
         this.characters.forEach(c => c.getNode().remove())
         this.characters = []
         this.mainCharacter.hide();
-        this.startScreen.setOnStartClickedListener(()=> this.playGame());
+        this.gameInfo.hide();
+        this.startScreen.setOnStartClickedListener(()=> this.showInstructions());
         console.log(this.status)
     }
 
+    showInstructions(){
+        this.informationScreen.show();
+        this.startScreen.hide();
+        this.informationScreen.setOnPlayClickedListener(()=> this.playGame());
+    }
 
     playGame(){
         this.mainCharacter.show();
         this.mainCharacter.run();
+        this.gameInfo.show();
         this.lastLoop =  Date.now();
-        this.startScreen.hide();
+        this.informationScreen.hide();
         this.status = GameStatus.PLAYING;
+        this.playSong();
         console.log(this.status)
+    }
+
+    playSong(){
+        this.gameSong = document.getElementById("gameSong")
+        this.gameSong.volume = 0.5
+        this.gameSong.play()
+    }
+
+    stopSong(){
+        this.gameSong.pause()
     }
 
     checkGameFinished(){
@@ -81,7 +86,11 @@ class Game {
         this.cleanAllChracters();
         this.mainCharacter.die()
         this.mainCharacter.hide();
-        this.createEndScreen();      
+        this.gameInfo.hide();
+        this.endScreen.show();
+        this.endScreen.setFinalScore(this.calculateFinalScore())
+        this.endScreen.setOnPlayAgainClickedListener(() => this.initGame());
+        this.stopSong();
     }
 
     
@@ -95,6 +104,26 @@ class Game {
             case GameStatus.FINISHED:
                 break;
         }
+    }
+
+    createStartScreen(){
+        this.startScreen = new StartScreen();
+        this.gameNode.appendChild(this.startScreen.getNode());
+    }
+
+    createInformationScreen(){
+        this.informationScreen = new InformationScreen();
+        this.gameNode.appendChild(this.informationScreen.getNode());
+    }
+
+    createGameInfo(){
+        this.gameInfo =  new GameInfo();
+        this.gameNode.appendChild(this.gameInfo.getNode());
+    }
+    
+    createEndScreen(){
+        this.endScreen = new EndScreen();
+        this.gameNode.appendChild(this.endScreen.getNode());
     }
 
     cleanDeadCharacters(){
@@ -118,7 +147,6 @@ class Game {
         this.updateGameInfo()
         this.lastLoop = Date.now()
         this.checkGameFinished()
-        this.calculateFinalScore()
     }
 
     updateGameInfo(){
@@ -156,17 +184,17 @@ class Game {
 
     onRewardCollision(typeOfReward){
         if(typeOfReward == 'coin'){
-            this.points += 1;
+            this.points += RewardsValue.COIN;
         }else if(typeOfReward == 'star'){
-            this.points += 2;
+            this.points += RewardsValue.STAR;
         } else {
-            this.points += 4;
+            this.points += RewardsValue.HEART;
         }
     }
 
     calculateFinalScore(){
         let finalScore = this.points + (this.lives * 10);
-        this.gameInfo.setFinalScore(finalScore);
+        return finalScore
     }
 
     
@@ -179,7 +207,6 @@ class Game {
                 }
                 if(c.getName() == "Reward" && !c.getHasCollided()){
                     c.setHasCollided(true);
-                    c.getNode().style.animation = "collect 4s ease-out, reward 5s linear forwards"; //Ver Ale
                     let typeOfReward = c.type;
                     this.onRewardCollision(typeOfReward);
                 }

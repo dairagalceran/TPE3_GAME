@@ -1,6 +1,7 @@
 body {
     overflow:hidden;
     margin: 0;
+    padding: 0;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif, cursive;
 }
 
@@ -17,7 +18,7 @@ body {
     align-items: center;
     justify-content: center;
     background-color: rgba(82, 158, 52, 0.6);
-    
+    text-align: center;
     z-index:700;
 }
 
@@ -36,8 +37,17 @@ h1 {
 }
 
 ul{
+
     font-size: 5vh;
+    text-align: center;
     list-style: none;
+}
+li{
+    padding-bottom: 12px;
+}
+.text-value{
+    justify-items: center;
+    font-size: 60px;
 }
 
 h2, h3{
@@ -55,6 +65,8 @@ button {
     font-size: 60px;
     background-color:   rgba(234, 33, 18, 0.9);
     padding-bottom: 40px;
+    padding-left: 30px;
+    padding-right: 30px;
     border-bottom-left-radius: 50%;
     border-bottom-right-radius: 50%;
     border:0;
@@ -62,6 +74,13 @@ button {
     cursor: pointer;
 }
 
+#score, #lives, #time{
+    font-size: 20px;
+    font-family: 'Lucida Grande', cursive;
+    font-weight: bolder;
+    color: #eda827;
+    flex-direction: row;
+}
 
 .word-congrats{
     display: flex;
@@ -80,6 +99,20 @@ button {
     color:#6e5204;
     text-transform: uppercase;
 }
+
+.screen-info{
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    color: #2f0006;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 900;
+}
+
+
 
 .score, .limit-time{
     background-color: rgba(		47, 0, 6, 0.2);
