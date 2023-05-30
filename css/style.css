@@ -256,7 +256,6 @@ body {
     bottom: 16%;
     width: 110px;
     height: 75px ;
-    /*animation: enemy 6s linear;*/
     z-index: 600;
 }
 
@@ -265,7 +264,6 @@ body {
     bottom: 15%;
     width: 70px ;
     height: 45px ;
-    /*animation: enemy 8s linear;*/
     z-index: 600;
 }
 .tronco{
@@ -274,7 +272,6 @@ body {
     bottom: 15%;
     width: 110px;
     height: 85px;
-    /*animation: enemy 9s linear;*/
     z-index: 600;
 }
 
@@ -300,20 +297,18 @@ body {
     }
     100% {
         opacity: 0;
-        transform: translate(0,-50px) rotateY(1080deg);
+        transform: translate(0, -400px) rotateY(1440deg);
         
     }
 }
 
-
-
-.reward {
+.coin {
     position: absolute; 
     width: 60px;
     height: 90px;
     background: url("/images/assets/coin-resized.png") repeat-x;
-    bottom: 55%;
-    animation: reward 8s linear ;
+    bottom: 50%;
+    animation: reward 5s linear ;
     filter: opacity(80%);
     z-index: 600;
 }
@@ -323,8 +318,8 @@ body {
     width: 60px;
     height: 90px;
     background: url("/images/assets/star.png") repeat-x;
-    bottom: 50%;
-    animation: reward 8s linear;
+    bottom: 55%;
+    animation: reward 5s linear;
     z-index: 600;
 }
 
@@ -332,9 +327,9 @@ body {
     position: absolute;
     width: 60px;
     height: 90px;
-    background: url("/images/assets/live.png") repeat-x;
-    bottom: 55%;
-    animation: reward 4s linear;
+    background: url("/images/assets/life.png") repeat-x;
+    bottom: 60.1%;
+    animation: reward 3s linear;
     z-index: 600;
 }
 

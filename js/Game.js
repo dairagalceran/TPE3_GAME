@@ -4,8 +4,9 @@ const GameStatus = {
     FINISHED : 'FINISHED'
 }
 
-const GAME_TIME_LIMIT = 45
-const INITIAL_LIVES = 5
+const GAME_TIME_LIMIT = 25
+const INITIAL_LIVES = 2
+
 class Game {
     
     status = GameStatus.INIT
@@ -29,27 +30,32 @@ class Game {
 
     createStartScreen(){
         this.startScreen = new StartScreen();
-        this.gameNode.appendChild(this.startScreen.getNode())
+        this.gameNode.appendChild(this.startScreen.getNode());
     }
 
-    /**
-    * Responde al evento de click del botón para poder 
-    * iniciar la nueva partida.
-    */
+    createEndScreen(){
+        this.endScreen = new EndScreen();
+        this.gameNode.appendChild(this.endScreen.getNode());
+    }
+
+    iniciarMusicajuego(){
+        const musicaFondoJuego =  new Audio("/sounds/kidding-11.mp3");
+        musicaFondoJuego.play();
+    }
 
     initGame(){
-        this.startScreen.show()
+        this.startScreen.show();
         this.status = GameStatus.INIT;
         this.points = 0;
         this.loopsForNextEnemy = 20;
-        this.loopsForNextCoin = 10;
+        this.loopsForNextCoin = 5;
         this.lives = INITIAL_LIVES;
         this.timeElapsed = 0
         this.lastLoop = 0
         this.characters.forEach(c => c.getNode().remove())
         this.characters = []
         this.mainCharacter.hide();
-        this.startScreen.setOnStartClickedListener(()=> this.playGame())
+        this.startScreen.setOnStartClickedListener(()=> this.playGame());
         console.log(this.status)
     }
 
@@ -65,17 +71,17 @@ class Game {
 
     checkGameFinished(){
         if(this.lives == 0 || this.timeElapsed / 1000  > GAME_TIME_LIMIT){
-            this.finishGame()
+            this.finishGame();
         }
     }
 
-    
     finishGame(){
         this.status = GameStatus.FINISHED
         console.log(this.status)
         this.cleanAllChracters();
         this.mainCharacter.die()
-        this.mainCharacter.hide()
+        this.mainCharacter.hide();
+        this.createEndScreen();      
     }
 
     
@@ -92,7 +98,7 @@ class Game {
     }
 
     cleanDeadCharacters(){
-        let deadCharacters = this.characters.filter(character => !character.getIsAlive()); // devuelve el elemento que cumple la condicion
+        let deadCharacters = this.characters.filter(character => !character.getIsAlive()); 
         this.characters = this.characters.filter(character => character.getIsAlive());
         deadCharacters.forEach(character => character.getNode().remove());
     }
@@ -112,6 +118,7 @@ class Game {
         this.updateGameInfo()
         this.lastLoop = Date.now()
         this.checkGameFinished()
+        this.calculateFinalScore()
     }
 
     updateGameInfo(){
@@ -129,13 +136,10 @@ class Game {
     }
 
 
-
     addCharacter(character){
         this.characters.push(character);
         this.gameNode.appendChild(character.getNode())
     }
-
-
 
 
     keyEvent(key){
@@ -143,27 +147,41 @@ class Game {
             this.mainCharacter.jump();
         }
     }
-  
- onEnemyCollision(){
-    this.lives--;
-    this.mainCharacter.fall();
- }   
 
- onRewardCollision(){
-    this.points++
- }
+    onEnemyCollision(){
+        this.lives--;
+        this.mainCharacter.fall();
+        
+    }   
 
+    onRewardCollision(typeOfReward){
+        if(typeOfReward == 'coin'){
+            this.points += 1;
+        }else if(typeOfReward == 'star'){
+            this.points += 2;
+        } else {
+            this.points += 4;
+        }
+    }
 
- checkCollisions(){
+    calculateFinalScore(){
+        let finalScore = this.points + (this.lives * 10);
+        this.gameInfo.setFinalScore(finalScore);
+    }
+
+    
+    checkCollisions(){
         this.characters.forEach(c => {
             if(this.mainCharacter.collidesWith(c)){
                 if(c.getName() == "Enemy" && !c.getHasCollided()){
                     c.setHasCollided(true);
-                    this.onEnemyCollision()
+                    this.onEnemyCollision();
                 }
                 if(c.getName() == "Reward" && !c.getHasCollided()){
                     c.setHasCollided(true);
-                   this.onRewardCollision();
+                    c.getNode().style.animation = "collect 4s ease-out, reward 5s linear forwards"; //Ver Ale
+                    let typeOfReward = c.type;
+                    this.onRewardCollision(typeOfReward);
                 }
             }
         });

@@ -13,6 +13,12 @@
     <title>Document</title>
 </head>
 <body>
+    <div>
+        <audio id="audio" autoplay>
+            <source src="sounds/kidding-11.mp3" type="audio/mp3">
+            Tu navegador no soporta audio HTML5.
+        </audio>
+    </div>
     
     <div id="game" class="">
             
@@ -26,15 +32,12 @@
             <div id="draw-layer" class="layer"></div>
 
             <div id="bear" class=" runner"></div>
-
             
             <div id="gameInfo" class="">
                 <div id="pointGame"><p>Puntaje: <span id="score"></span></p></div>
                 <div id="lives"> </div>
                 <div id="time"></div>
             </div>
-    
-
             
         </div>
 
@@ -46,6 +49,7 @@
 <script src="js/Enemy.js"></script>
 <script src="js/Reward.js"></script>
 <script src="js/StartScreen.js"></script>
+<script src="js/EndScreen.js"></script>
 <script src="js/Game.js"></script>
 <script src="js/main.js"></script>
 
