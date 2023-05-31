@@ -1,3 +1,6 @@
+/**
+ * Clase hija de ScreenItem
+ */
 "use strict"
 
 class InformationScreen extends ScreenItem {

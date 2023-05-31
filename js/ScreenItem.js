@@ -1,3 +1,7 @@
+/**
+ * Clase padre  de EndScreen, GameInfo, InformationScreen  y StartScreen
+ */
+
 class ScreenItem {
     
     constructor(domNode){

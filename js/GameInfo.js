@@ -1,3 +1,7 @@
+/**
+ * Clase hija de ScreenItem
+ */
+
 class GameInfo extends ScreenItem {
 
     constructor(){

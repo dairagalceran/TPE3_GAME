@@ -2,11 +2,13 @@
 
 
 /**
- * Variables y constantes
+ * Variables 
  */
 let game = new Game();
 
-
+/**
+ * Instancia la clase Game para iniciar el juego
+ */
 game.initGame()
 
 

@@ -1,3 +1,11 @@
+/**
+ * CLASE  ENEMY
+ * 
+ * Instancia obstáculos de manera aleatoria en el DOM creado dinámicamente y lo muestra 
+ * Clase hija de Character
+ * 
+ */
+
 class Enemy extends Character {
 
     constructor(){
@@ -30,9 +38,19 @@ class Enemy extends Character {
         return this.type;
     }
     
+    /**
+     * 
+     * @returns el nombre de la clase para chequeos
+     */
     getName(){
         return "Enemy"
     }
+
+    /**
+     * Permite mostrar en pantalla el objeto Enemy
+     * Saca la animación definida en css
+     * die() => cambia el valor del estado de isAlive
+     */
 
     show(){
         super.show();
@@ -40,6 +58,13 @@ class Enemy extends Character {
             this.die();
         });
     }
+
+    /**
+     * 
+     * @param {*} collided indica que el avatar colisionó con un enemigo
+     * @param {*} typeOfenemy pasa por parámerro el tipo de enemigo colisionado 
+     * para seleccionar el efecto de sonido 
+     */
 
     setHasCollided(collided , typeOfenemy){
         super.setHasCollided(collided);

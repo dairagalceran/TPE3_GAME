@@ -1,3 +1,6 @@
+/**
+ * Clase hija de ScreenItem
+ */
 "use strict"
 
 class StartScreen extends ScreenItem {
@@ -15,7 +18,7 @@ class StartScreen extends ScreenItem {
 
     setOnStartClickedListener(onClick){
         const button = this.getNode().querySelector('#button-start');
-       // button.removeEventListener('click',null);
+        button.removeEventListener('click',null);
         button.addEventListener('click' , () => {
             onClick();
         })
