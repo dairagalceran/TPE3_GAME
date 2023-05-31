@@ -1,6 +1,9 @@
+const EnemiesValue = {
+    FALL: -1
+}
+
 /**
  * CLASE  ENEMY
- * 
  * Instancia obstáculos de manera aleatoria en el DOM creado dinámicamente y lo muestra 
  * Clase hija de Character
  * 

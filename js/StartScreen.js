@@ -5,6 +5,12 @@
 
 class StartScreen extends ScreenItem {
 
+     /**
+     * al instanciar un objeto de la clase se crea el div en el html
+     * se agregan las clases que dan estilo al html renderizado
+     * agrega a la pantalla los elementos del html
+     * llama al nodo de la clase padre y no se muestra en pantalla
+     */
     constructor() {
         const node = document.createElement('div');
         node.classList.add('layer');
@@ -14,7 +20,11 @@ class StartScreen extends ScreenItem {
         this.hide();
     }
 
-
+    /**
+     * Método que agrega el evento click al botón creado dinámicamente al instanciar this objeto
+     * para que se muestre la pantalla información al presionarlo
+     * @param {*} onClick 
+     */
 
     setOnStartClickedListener(onClick){
         const button = this.getNode().querySelector('#button-start');

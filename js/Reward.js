@@ -1,9 +1,9 @@
 //Constante de los valores definidos para cada premio
 
 const RewardsValue ={
-    COIN: 1,
-    STAR: 2,
-    HEART: 4
+    COIN: 2,
+    STAR: 4,
+    REMAINING_LIVES: 10
 }
 
 /**
@@ -38,7 +38,7 @@ class Reward extends Character {
                 this.type = 'star';
                 break;
             case 3:
-                this.type ='live';
+                this.type ='heart';
                 break;
             default:
                 'coin';
@@ -81,10 +81,20 @@ class Reward extends Character {
     }
 
     /**
-     * toma el sonido del DOM cuando un premio colisiona con elavatar
-     */
-    setHasCollidedSound(){
-        this.rewardSound = document.getElementById('rewardSound');
-        this.rewardSound.play();
+     * toma el sonido del DOM para personalizar los efectos
+     * cuando un premio colisiona con el avatar
+     * o cuando se gana una vida
+    */
+
+    setHasCollidedSound(collided , typeOfReward){
+        super.setHasCollided(collided);
+        if(collided && typeOfReward == 'coin' || typeOfReward == 'star'){
+            this.rewardSound = document.getElementById('rewardSound');
+            this.rewardSound.play();
+        }
+        if(collided && typeOfReward == 'heart'){
+            this.heartSound = document.getElementById('heartSound');
+            this.heartSound.play();
+        }
     }
 }

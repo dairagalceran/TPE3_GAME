@@ -323,11 +323,11 @@ body {
     z-index: 600;
 }
 
-.live {
+.heart {
     position: absolute;
     width: 60px;
     height: 90px;
-    background: url("/images/assets/life.png") repeat-x;
+    background: url("/images/assets/bear-life.png") repeat-x;
     bottom: 60.1%;
     animation: reward 3s linear;
     z-index: 600;
@@ -338,6 +338,6 @@ body {
         left: 100%;
     }
     to {
-        left: -20%;
+        left: -40%;
     }
 }

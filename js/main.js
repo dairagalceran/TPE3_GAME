@@ -31,4 +31,9 @@ setInterval(gameLoop, 50);
  */
 function gameLoop() {
     game.onLoop();
+    
+
+
+
+
 }

@@ -208,6 +208,7 @@ class Game {
 
     /**
      * Método que ejecuta el siguiente bloque de código, 20 veces por segundo
+     * mientras el estado del juego es PLAYING
      */
     onLoopPlaying(){
         let deltaTime = (Date.now() - this.lastLoop );  // diferencial de tiempo transcurrido entre el tiempo actual y el ultimo loop
@@ -262,6 +263,7 @@ class Game {
      */
     onEnemyCollision(){
         this.lives--;
+        this.points += EnemiesValue.FALL;
         this.mainCharacter.fall();  
     }   
 
@@ -275,7 +277,7 @@ class Game {
         }else if(typeOfReward == 'star'){
             this.points += RewardsValue.STAR;
         } else {
-            this.points += RewardsValue.HEART;
+            this.lives++;
         }
     }
 
@@ -285,7 +287,7 @@ class Game {
      * se suma la cantiada de vidas restantes multiplicada por 10
      */
     calculateFinalScore(){
-        let finalScore = this.points + (this.lives * 10);
+        let finalScore = this.points + (this.lives * RewardsValue.REMAINING_LIVES);
         return finalScore
     }
 
@@ -304,7 +306,7 @@ class Game {
                 }
                 if(c.getName() == "Reward" && !c.getHasCollided()){
                     c.setHasCollided(true);
-                    c.setHasCollidedSound();
+                    c.setHasCollidedSound(true,c.type);
                     let typeOfReward = c.type;
                     this.onRewardCollision(typeOfReward);
                 }
