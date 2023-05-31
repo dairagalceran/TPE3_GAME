@@ -7,4 +7,4 @@ Juego desarrollado para niños de hasta 8 años, por eso:
 -la caricatura no desmuestra emociones de enojo ni tiene acciones violentes de golpes, patadas u otros.
 -la música es tranquila y relajante
 
-Jugar en pantallas del tamaño.
+Jugar en pantallas del tamaño: 2600px x 1800px
